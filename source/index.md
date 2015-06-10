@@ -2,9 +2,7 @@
 title: API Reference
 
 language_tabs:
-  - shell
   - ruby
-  - python
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -23,29 +21,36 @@ Welcome to the TastyTab's API! You can use our API to sync restaurant data, auth
 You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 
+# Technical Overview
+
+**Base API Endpoint**: `http://tastytab.com/api/v1/`
+
+JSON is returned in all API responses, including errors.
+
+
 # Authentication
+
+To interact with TastyTab's API you need to authenticate yourself by including provided `access_token` via query string parameter.
+
+Some sensitive requests also require `waiter_token` & `manager_token`.
+
+### HTTP REQUEST
+`GET /api/v1/?access_token=8de9358df65b86b643a206cb795355a2`
+
+
+
 
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
+require 'httparty'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+response = HTTParty.get('http://www.tastytab.com/api/v1/?access_token=8de9358df65b86b643a206cb795355a2')
+
+response.body
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace sample access token `8de9358df65b86b643a206cb795355a2` with your API key.
 
 Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 
