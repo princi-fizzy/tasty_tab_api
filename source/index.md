@@ -5,7 +5,7 @@ language_tabs:
   - ruby
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='http://www.tastytab.com/'>TastyTab's documentation</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -62,103 +62,94 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Customers
 
-## Get All Kittens
+## Registration
 
 ```ruby
-require 'kittn'
+require 'unirest'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+response = Unirest.post "http://localhost:3000/api/v1/customers/registrations", headers:{ "Accept" => "application/json" }, parameters: {customer: {email: "user@example.com", password: "testing", pos_customer_id: 5}}
+
+response.raw_body
+#=> "{"id":8,"pos_customer_id":"5","first_name":null,"last_name":null,"email":"user@example.com","birth_date":null,"phone_area_code":null,"phone_number":null,"restaurant_opt_out":null,"tasty_tab_opt_out":null,"restaurant_id":null,"created_at":"2015-06-10T11:41:44.475Z","updated_at":"2015-06-10T11:41:44.475Z","auth_token":"zE21sfz4Ugkjuk4NH9U9"}"
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "id": 9,
+  "pos_customer_id": "5",
+  "first_name": null,
+  "last_name": null,
+  "email": "user@example.com",
+  "birth_date": null,
+  "phone_area_code": null,
+  "phone_number": null,
+  "restaurant_opt_out": null,
+  "tasty_tab_opt_out": null,
+  "restaurant_id": null,
+  "created_at": "2015-06-10T11:45:48.813Z",
+  "updated_at": "2015-06-10T11:45:48.813Z",
+  "auth_token": "fUQRZPyxQ2c9oUiUJxn5"
+}
 ```
 
-This endpoint retrieves all kittens.
+This endpoint registers a new customer.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET http://tastytab.com/api/v1/customers/registrations`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Description
+--------- | -----------
+email | Make sure it doesn't already exists.
+password | Password must be atleast 6 characters long.
+pos_customer_id | It must be unique. Each customer is assigned a unique pos id.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Customer has been registered. Yay!
 </aside>
 
-## Get a Specific Kitten
+## Create a new session
 
 ```ruby
-require 'kittn'
+require 'unirest'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+response = Unirest.post "http://tastytab.com/api/v1/customers/sessions", headers:{ "Accept" => "application/json" }, parameters: {customer: {email: "user@example.com", password: "testing"}}
+response.raw_body
+# => "{"id":2,"pos_customer_id":"2","first_name":"Rahul1","last_name":null,"email":"rahul1@fizzysoftware.com","birth_date":null,"phone_area_code":null,"phone_number":null,"restaurant_opt_out":null,"tasty_tab_opt_out":null,"restaurant_id":null,"created_at":"2015-05-11T10:00:58.000Z","updated_at":"2015-06-10T12:55:35.401Z","auth_token":"92LSsBmtWdzMwuzSWc6y"}"
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
-```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
   "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "pos_customer_id": "2",
+  "first_name": "Rahul1",
+  "last_name": null,
+  "email": "rahul1@fizzysoftware.com",
+  "birth_date": null,
+  "phone_area_code": null,
+  "phone_number": null,
+  "restaurant_opt_out": null,
+  "tasty_tab_opt_out": null,
+  "restaurant_id": null,
+  "created_at": "2015-05-11T10:00:58.000Z",
+  "updated_at": "2015-06-10T12:54:50.224Z",
+  "auth_token": "92LSsBmtWdzMwuzSWc6y"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint generates an auth_token, which should be used to make all future customer related requests.
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+<aside class="warning">You should keep this access_token secret.</aside>
 
 ### HTTP Request
 
@@ -168,5 +159,40 @@ This endpoint retrieves a specific kitten.
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the cat to retrieve
+email | Registered email id of the customer
+password | Associated password
+
+
+# App Sync
+
+```ruby
+require 'unirest'
+
+response = Unirest.get "http://localhost:3000/api/v1/24/app_sync.json?access_token=trap"
+
+response.raw_body
+# => "{"id":24,"name":"Burger King","logo":{"logo":{"url":"/images/fallback/default.png","thumb":{"url":"/images/fallback/thumb_default.png"}}}, "Remove remaining hash for brevity.."}"
+
+```
+
+
+
+```json
+
+{
+  "id": 24,
+  "name": "Burger King",
+  "logo": {
+    "logo": {
+      "url": "/images/fallback/default.png",
+      "thumb": {
+        "url": "/images/fallback/thumb_default.png"
+      }
+    }
+  }
+  "Remove remaining hash for brevity.."
+}
+
+
+```
 
