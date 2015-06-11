@@ -175,10 +175,9 @@ response.raw_body
 
 ```
 
-
+> This command returns the following json:
 
 ```json
-
 {
   "id": 24,
   "name": "Burger King",
@@ -192,7 +191,26 @@ response.raw_body
   }
   "Remove remaining hash for brevity.."
 }
-
-
 ```
+
+The App Sync API will return entire restaurant hash in a nested & easy to parse format. This hash includes restaurant menus, menu categories, food items, and food item reviews.
+
+
+These hash may contain duplicate data, so remember to remove any redundant data.
+
+
+### HTTP Request
+
+`GET http://tastytab.com/api/v1/:id/app_sync?access_token=8de9358df65b86b643a206cb795355a2`
+
+
+Replace `:id` with restaurant id. Also, remember to replace access_token with your own access_token.
+
+
+Data will only be sent if it has changed since last sync. We continuously run sync task in background to make sure everything stays in sync.
+
+To optimize things try to set sync interval & sync time in accounts setting, and make sync request accordingly.
+
+
+
 
