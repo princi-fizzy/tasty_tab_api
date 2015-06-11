@@ -2,6 +2,7 @@
 title: API Reference
 
 language_tabs:
+  - JSON
   - ruby
 
 toc_footers:
@@ -35,12 +36,17 @@ To interact with TastyTab's API you need to authenticate yourself by including p
 Some sensitive requests also require `waiter_token` & `manager_token`.
 
 ### HTTP REQUEST
-`GET /api/v1/?access_token=8de9358df65b86b643a206cb795355a2`
+`GET http://www.tastytab.com/api/v1/cutomers?access_token=8de9358df65b86b643a206cb795355a2`
 
 
-
-
-> To authorize, use this code:
+```json
+{
+  access_token: "8de9358df65b86b643a206cb795355a2"
+  -customer: {
+    name: "Rahul"
+  }
+}
+```
 
 ```ruby
 require 'httparty'
@@ -52,19 +58,30 @@ response.body
 
 > Make sure to replace sample access token `8de9358df65b86b643a206cb795355a2` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+TastyTab uses access token to allow access to the API. You can register a new TastyTab access token by contacting us.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+TastyTab expects for the access_token to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`access_token: "8de9358df65b86b643a206cb795355a2"`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>8de9358df65b86b643a206cb795355a2</code> with your personal access token.
 </aside>
 
 # Customers
 
 ## Registration
+
+```json
+{
+  access_token: "8de9358df65b86b643a206cb795355a2",\
+  -customer: {
+    email: "user@example.com",
+    password: "testing",
+    pos_customer_id: 5
+  }
+}
+```
 
 ```ruby
 require 'unirest'
@@ -74,6 +91,7 @@ response = Unirest.post "http://localhost:3000/api/v1/customers/registrations", 
 response.raw_body
 #=> "{"id":8,"pos_customer_id":"5","first_name":null,"last_name":null,"email":"user@example.com","birth_date":null,"phone_area_code":null,"phone_number":null,"restaurant_opt_out":null,"tasty_tab_opt_out":null,"restaurant_id":null,"created_at":"2015-06-10T11:41:44.475Z","updated_at":"2015-06-10T11:41:44.475Z","auth_token":"zE21sfz4Ugkjuk4NH9U9"}"
 ```
+
 
 
 > The above command returns JSON structured like this:
@@ -117,6 +135,16 @@ Customer has been registered. Yay!
 
 ## Create a new session
 
+```json
+{
+  access_token: "8de9358df65b86b643a206cb795355a2"
+  -customer: {
+    email: "user@example.com",
+    password: "testing"
+  }
+}
+```
+
 ```ruby
 require 'unirest'
 
@@ -124,7 +152,6 @@ response = Unirest.post "http://tastytab.com/api/v1/customers/sessions", headers
 response.raw_body
 # => "{"id":2,"pos_customer_id":"2","first_name":"Rahul1","last_name":null,"email":"rahul1@fizzysoftware.com","birth_date":null,"phone_area_code":null,"phone_number":null,"restaurant_opt_out":null,"tasty_tab_opt_out":null,"restaurant_id":null,"created_at":"2015-05-11T10:00:58.000Z","updated_at":"2015-06-10T12:55:35.401Z","auth_token":"92LSsBmtWdzMwuzSWc6y"}"
 ```
-
 
 > The above command returns JSON structured like this:
 
@@ -147,6 +174,8 @@ response.raw_body
 }
 ```
 
+
+
 This endpoint generates an auth_token, which should be used to make all future customer related requests.
 
 <aside class="warning">You should keep this access_token secret.</aside>
@@ -164,6 +193,15 @@ password | Associated password
 
 
 # App Sync
+
+```json
+{
+  access_token: "8de9358df65b86b643a206cb795355a2"
+  -restaurant: {
+    id: 1
+  }
+}
+```
 
 ```ruby
 require 'unirest'
