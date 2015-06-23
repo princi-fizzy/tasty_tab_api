@@ -13,6 +13,7 @@ includes:
   - introduction
   - authentication
   - customers
+  - search
   - app_sync
   - errors
 
