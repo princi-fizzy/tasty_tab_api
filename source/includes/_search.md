@@ -19,7 +19,7 @@ A user can search a paticular food item in a restaurant or user also has facilit
 ```ruby
 require 'unirest'
 
-response = Unirest.get "http://localhost:3000/api/v1/restaurants/2/search", headers:{ "Accept" => "application/json" }, parameters: {search_value: "FRIED ZUCCHINI" , access_token: "testing"}
+response = Unirest.get "http://localhost:3000/api/v1/restaurants/2/search", headers:{ "Accept" => "application/json" }, parameters: {search_value: "FRIED ZUCCHINI" , access_token: "8de9358df65b86b643a206cb795355a2"}
 
 response.raw_body
 ```
@@ -218,7 +218,7 @@ This endpoint search particular food item in a particular restaurant.
 
 ### HTTP Request
 
-`GET  http://tastytab.com/api/v1/restaurants/2/search?access_token=testing&search_value=FRIED ZUCCHINI`
+`GET  http://tastytab.com/api/v1/restaurants/2/search?access_token=8de9358df65b86b643a206cb795355a2&search_value=FRIED ZUCCHINI`
 
 ### Query Parameters
 
@@ -240,6 +240,16 @@ A particular food item and its complete details is fetched from database .
 }
 
 ```
+
+```ruby
+require 'unirest'
+
+response = Unirest.get "http://localhost:3000/api/v1/restaurants/2/search", headers:{ "Accept" => "application/json" }, parameters: {search_value: "Sides" , access_token: "8de9358df65b86b643a206cb795355a2"}
+
+response.raw_body
+```
+> The above command returns JSON structured like this:
+
 
 ```json
 
@@ -398,19 +408,6 @@ A particular food item and its complete details is fetched from database .
 }
 
 ```
-
-
-
-```ruby
-require 'unirest'
-
-response = Unirest.get "http://localhost:3000/api/v1/restaurants/2/search", headers:{ "Accept" => "application/json" }, parameters: {search_value: "Sides" , access_token: "testing"}
-
-response.raw_body
-```
-> The above command returns JSON structured like this:
-
-
 
 ```ruby
 {
@@ -573,7 +570,7 @@ response.raw_body
 This endpoint search all food items of particular category in a particular restaurant.
 ### HTTP Request
 
-`GET http://localhost:3000/api/v1/restaurants/2/search?access_token=testing&search_value=Sides`
+`GET http://localhost:3000/api/v1/restaurants/2/search?access_token=8de9358df65b86b643a206cb795355a2&search_value=Sides`
 
 ### URL Parameters
 
