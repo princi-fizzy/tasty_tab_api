@@ -251,7 +251,7 @@ Customer has been registered. Yay!
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">http://localhost:3000/api/v1/customers/sessions.json?access_token=8de9358df65b86b643a206cb795355a2</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -271,6 +271,594 @@ Customer has been registered. Yay!
 </tr>
 </tbody></table>
 
+          <h1 id="full-text-search">Full Text Search</h1>
+
+<p>This if full text search API and it  will help you to search food items available in database .</p>
+
+<p>There are different case by which a user can search a food items in a particular restaurant .</p>
+
+<p>A user can search a paticular food item in a restaurant or user also has facility to search all food items of particular food category .</p>
+
+<h2 id="search-particular-food-item">Search Particular Food Item</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w">   </span><span class="s2">"8de9358df65b86b643a206cb795355a2"</span><span class="w">
+  </span><span class="s2">"search_value"</span><span class="err">:</span><span class="w">   </span><span class="s2">"FRIED ZUCCHINI"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://localhost:3000/api/v1/restaurants/2/search"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">search_value: </span><span class="s2">"FRIED ZUCCHINI"</span> <span class="p">,</span> <span class="ss">access_token: </span><span class="s2">"8de9358df65b86b643a206cb795355a2"</span><span class="p">}</span>
+
+<span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FRIED ZUCCHINI"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pos_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fried Zucchini"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.95</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_out_of_stock"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"item_modifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"food_images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/1/f1.jpg"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/1/thumb_f1.jpg"</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/2/f2.jpg"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/2/thumb_f2.jpg"</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/3/f3.jpg"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/3/thumb_f3.jpg"</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/4/f4.jpg"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/4/thumb_f4.jpg"</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/5/f5.jpg"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/5/thumb_f5.jpg"</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/6/f6.jpg"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/6/thumb_f6.jpg"</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<pre class="highlight ruby"><code><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"FRIED ZUCCHINI"</span><span class="p">,</span>
+        <span class="s2">"pos_name"</span><span class="p">:</span> <span class="s2">"Fried Zucchini"</span><span class="p">,</span>
+        <span class="s2">"price"</span><span class="p">:</span> <span class="mi">6</span><span class="o">.</span><span class="mi">95</span><span class="p">,</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">"is_out_of_stock"</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
+        <span class="s2">"item_modifiers"</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">"food_images"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/1/f1.jpg"</span><span class="p">,</span>
+                            <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/1/thumb_f1.jpg"</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                    <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/2/f2.jpg"</span><span class="p">,</span>
+                            <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/2/thumb_f2.jpg"</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                    <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/3/f3.jpg"</span><span class="p">,</span>
+                            <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/3/thumb_f3.jpg"</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                    <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/4/f4.jpg"</span><span class="p">,</span>
+                            <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/4/thumb_f4.jpg"</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+                    <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/5/f5.jpg"</span><span class="p">,</span>
+                            <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/5/thumb_f5.jpg"</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+                    <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/6/f6.jpg"</span><span class="p">,</span>
+                            <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/6/thumb_f6.jpg"</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre>
+
+<p>This endpoint search particular food item in a particular restaurant.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET  http://tastytab.com/api/v1/restaurants/2/search?access_token=8de9358df65b86b643a206cb795355a2&amp;search_value=FRIED ZUCCHINI</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>search_value</td>
+<td>Make sure it&rsquo;s does not empty and it should be valid food item name .</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+A particular food item and its complete details is fetched from database .
+</aside>
+
+<h2 id="get-all-food-items-of-particular-category">Get all food items of particular category</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w">   </span><span class="s2">"8de9358df65b86b643a206cb795355a2"</span><span class="w">
+  </span><span class="s2">"search_value"</span><span class="err">:</span><span class="w">   </span><span class="s2">"Sides"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://localhost:3000/api/v1/restaurants/2/search"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">search_value: </span><span class="s2">"Sides"</span> <span class="p">,</span> <span class="ss">access_token: </span><span class="s2">"8de9358df65b86b643a206cb795355a2"</span><span class="p">}</span>
+
+<span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"food_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"food_item"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FRIED ZUCCHINI"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"pos_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fried Zucchini"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.95</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_out_of_stock"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"item_modifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"food_images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/1/f1.jpg"</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/1/thumb_f1.jpg"</span><span class="w">
+                                    </span><span class="p">}</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/2/f2.jpg"</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/2/thumb_f2.jpg"</span><span class="w">
+                                    </span><span class="p">}</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/3/f3.jpg"</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/3/thumb_f3.jpg"</span><span class="w">
+                                    </span><span class="p">}</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/4/f4.jpg"</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/4/thumb_f4.jpg"</span><span class="w">
+                                    </span><span class="p">}</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/5/f5.jpg"</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/5/thumb_f5.jpg"</span><span class="w">
+                                    </span><span class="p">}</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"food_image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/6/f6.jpg"</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/food_image/image/6/thumb_f6.jpg"</span><span class="w">
+                                    </span><span class="p">}</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"food_item"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POTATO SKINS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"pos_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Potato Skins"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.99</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_out_of_stock"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"item_modifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"food_images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"food_item"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GARLIC BREAD"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"pos_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garlic Bread"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.49</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_out_of_stock"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"item_modifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"food_images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"food_item"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBQ WINGS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"pos_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBQ Wings"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.99</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_out_of_stock"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"item_modifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"item_modifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">94</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"pos_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bleu Cheese"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"item_modifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"pos_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No Dressing"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"item_modifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"pos_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ranch"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"food_images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<pre class="highlight ruby"><code><span class="p">{</span>
+    <span class="s2">"food_items"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"food_item"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"id"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+                <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"FRIED ZUCCHINI"</span><span class="p">,</span>
+                <span class="s2">"pos_name"</span><span class="p">:</span> <span class="s2">"Fried Zucchini"</span><span class="p">,</span>
+                <span class="s2">"price"</span><span class="p">:</span> <span class="mi">6</span><span class="o">.</span><span class="mi">95</span><span class="p">,</span>
+                <span class="s2">"description"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+                <span class="s2">"is_out_of_stock"</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
+                <span class="s2">"item_modifiers"</span><span class="p">:</span> <span class="p">[],</span>
+                <span class="s2">"food_images"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                            <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/1/f1.jpg"</span><span class="p">,</span>
+                                    <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                        <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/1/thumb_f1.jpg"</span>
+                                    <span class="p">}</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                            <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/2/f2.jpg"</span><span class="p">,</span>
+                                    <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                        <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/2/thumb_f2.jpg"</span>
+                                    <span class="p">}</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                            <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/3/f3.jpg"</span><span class="p">,</span>
+                                    <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                        <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/3/thumb_f3.jpg"</span>
+                                    <span class="p">}</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"id"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                            <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/4/f4.jpg"</span><span class="p">,</span>
+                                    <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                        <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/4/thumb_f4.jpg"</span>
+                                    <span class="p">}</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"id"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+                            <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/5/f5.jpg"</span><span class="p">,</span>
+                                    <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                        <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/5/thumb_f5.jpg"</span>
+                                    <span class="p">}</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">"food_image"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"id"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+                            <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"image"</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/6/f6.jpg"</span><span class="p">,</span>
+                                    <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                                        <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/food_image/image/6/thumb_f6.jpg"</span>
+                                    <span class="p">}</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"food_item"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"id"</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span>
+                <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"POTATO SKINS"</span><span class="p">,</span>
+                <span class="s2">"pos_name"</span><span class="p">:</span> <span class="s2">"Potato Skins"</span><span class="p">,</span>
+                <span class="s2">"price"</span><span class="p">:</span> <span class="mi">7</span><span class="o">.</span><span class="mi">99</span><span class="p">,</span>
+                <span class="s2">"description"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+                <span class="s2">"is_out_of_stock"</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
+                <span class="s2">"item_modifiers"</span><span class="p">:</span> <span class="p">[],</span>
+                <span class="s2">"food_images"</span><span class="p">:</span> <span class="p">[]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"food_item"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"id"</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+                <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"GARLIC BREAD"</span><span class="p">,</span>
+                <span class="s2">"pos_name"</span><span class="p">:</span> <span class="s2">"Garlic Bread"</span><span class="p">,</span>
+                <span class="s2">"price"</span><span class="p">:</span> <span class="mi">3</span><span class="o">.</span><span class="mi">49</span><span class="p">,</span>
+                <span class="s2">"description"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+                <span class="s2">"is_out_of_stock"</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
+                <span class="s2">"item_modifiers"</span><span class="p">:</span> <span class="p">[],</span>
+                <span class="s2">"food_images"</span><span class="p">:</span> <span class="p">[]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">"food_item"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"id"</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+                <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"BBQ WINGS"</span><span class="p">,</span>
+                <span class="s2">"pos_name"</span><span class="p">:</span> <span class="s2">"BBQ Wings"</span><span class="p">,</span>
+                <span class="s2">"price"</span><span class="p">:</span> <span class="mi">6</span><span class="o">.</span><span class="mi">99</span><span class="p">,</span>
+                <span class="s2">"description"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+                <span class="s2">"is_out_of_stock"</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
+                <span class="s2">"item_modifiers"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s2">"item_modifier"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"id"</span><span class="p">:</span> <span class="mi">94</span><span class="p">,</span>
+                            <span class="s2">"pos_name"</span><span class="p">:</span> <span class="s2">"Bleu Cheese"</span><span class="p">,</span>
+                            <span class="s2">"price"</span><span class="p">:</span> <span class="n">null</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">"item_modifier"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"id"</span><span class="p">:</span> <span class="mi">95</span><span class="p">,</span>
+                            <span class="s2">"pos_name"</span><span class="p">:</span> <span class="s2">"No Dressing"</span><span class="p">,</span>
+                            <span class="s2">"price"</span><span class="p">:</span> <span class="n">null</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">"item_modifier"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"id"</span><span class="p">:</span> <span class="mi">96</span><span class="p">,</span>
+                            <span class="s2">"pos_name"</span><span class="p">:</span> <span class="s2">"Ranch"</span><span class="p">,</span>
+                            <span class="s2">"price"</span><span class="p">:</span> <span class="n">null</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="s2">"food_images"</span><span class="p">:</span> <span class="p">[]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+</code></pre>
+
+<p>This endpoint search all food items of particular category in a particular restaurant.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:3000/api/v1/restaurants/2/search?access_token=8de9358df65b86b643a206cb795355a2&amp;search_value=Sides</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>search_value</td>
+<td>It should be valid food item name or valid category name</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+All food items and their details of particular category is fetched from database .
+</aside>
+
           <h1 id="app-sync">App Sync</h1>
 
 <h2 id="sync-restaurant-data">Sync Restaurant Data</h2>
@@ -283,7 +871,7 @@ Customer has been registered. Yay!
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://localhost:3000/api/v1/24/app_sync.json?access_token=trap"</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://localhost:3000/api/v1/24/app_sync.json?access_token=8de9358df65b86b643a206cb795355a2"</span>
 
 <span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
 </code></pre>
@@ -320,13 +908,79 @@ Customer has been registered. Yay!
 <span class="p">}</span>
 </code></pre>
 
-<p>The App Sync API will return entire restaurant hash in a nested &amp; easy to parse format. This hash includes restaurant menus, menu categories, food items, and food item reviews.</p>
+<p>The App Sync API will return entire restaurant hash in a nested &amp; easy to parse format. This hash includes restaurant menus, menu categories, foost</p>
 
 <p>These hash may contain duplicate data, so remember to remove any redundant data.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET http://tastytab.com/api/v1/:id/app_sync?access_token=8de9358df65b86b643a206cb795355a2</code></p>
+
+<p>Replace <code class="prettyprint">:id</code> with restaurant id. Also, remember to replace access_token with your own access_token.</p>
+
+<p>Data will only be sent if it has changed since last sync. We continuously run sync task in background to make sure everything stays in sync.</p>
+
+<p>To optimize things try to set sync interval &amp; sync time in accounts setting, and make sync request accordingly.</p>
+
+<h2 id="sync-restaurant-data-with-android">Sync Restaurant Data With Android</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8de9358df65b86b643a206cb795355a2"</span><span class="w">
+  </span><span class="s2">"restaurant"</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"app_sync_token"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="s2">"testing"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://localhost:3000/api/v1/restaurants/2/app_sync2?access_token=8de9358df65b86b643a206cb795355a2&amp;app_sync_token=testing"</span>
+
+<span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sagar ratna"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/restaurant/logo/2/f2.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"thumb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/uploads/restaurant/logo/2/thumb_f2.jpg"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"pos_sync_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Daily"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"android_app_sync_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1435148022"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Remove remaining hash for brevity.."</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight ruby"><code><span class="p">{</span>
+    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"sagar ratna"</span><span class="p">,</span>
+    <span class="s2">"logo"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"logo"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/restaurant/logo/2/f2.jpg"</span><span class="p">,</span>
+            <span class="s2">"thumb"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"/uploads/restaurant/logo/2/thumb_f2.jpg"</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">"pos_sync_interval"</span><span class="p">:</span> <span class="s2">"Daily"</span><span class="p">,</span>
+    <span class="s2">"android_app_sync_token"</span><span class="p">:</span> <span class="s2">"1435148022"</span><span class="p">,</span>
+    <span class="s2">"Remove remaining hash for brevity.."</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The App Sync API will return entire restaurant hash in a nested &amp; easy to parse format. This hash includes restaurant menus, menu categories, foost</p>
+
+<p>These hash may contain duplicate data, so remember to remove any redundant data.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://tastytab.com/api/v1/restaurants/:id/app_sync2?access_token=8de9358df65b86b643a206cb795355a2</code></p>
 
 <p>Replace <code class="prettyprint">:id</code> with restaurant id. Also, remember to replace access_token with your own access_token.</p>
 
@@ -354,15 +1008,15 @@ Customer has been registered. Yay!
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden &ndash; The data requested is hidden for administrators only</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; The specified record could not be found</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed &ndash; You tried to access give resource with an invalid method</td>
 </tr>
 <tr>
 <td>406</td>
@@ -370,7 +1024,7 @@ Customer has been registered. Yay!
 </tr>
 <tr>
 <td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>Gone &ndash; The resource requested has been removed from our servers</td>
 </tr>
 <tr>
 <td>418</td>
@@ -378,7 +1032,7 @@ Customer has been registered. Yay!
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests &ndash; You&rsquo;re sending too many requests! Slow down!</td>
 </tr>
 <tr>
 <td>500</td>
