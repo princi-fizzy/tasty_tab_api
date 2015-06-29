@@ -146,7 +146,7 @@ This endpoint generates an auth_token, which should be used to make all future c
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`http://localhost:3000/api/v1/customers/sessions.json?access_token=8de9358df65b86b643a206cb795355a2`
 
 ### URL Parameters
 
