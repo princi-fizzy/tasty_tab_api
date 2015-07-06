@@ -1,5 +1,6 @@
 # App Sync
 
+
 ## Sync Restaurant Data
 
 ```json
