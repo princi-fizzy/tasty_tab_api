@@ -101,9 +101,9 @@ response.raw_body
     "name": "sagar ratna",
     "logo": {
         "logo": {
-            "url": "/uploads/restaurant/logo/2/f2.jpg",
+            "url": "http://tastytab.com/uploads/restaurant/logo/2/f2.jpg",
             "thumb": {
-                "url": "/uploads/restaurant/logo/2/thumb_f2.jpg"
+                "url": "http://tastytab.com/uploads/restaurant/logo/2/thumb_f2.jpg"
             }
         }
     },
@@ -121,9 +121,9 @@ response.raw_body
     "name": "sagar ratna",
     "logo": {
         "logo": {
-            "url": "/uploads/restaurant/logo/2/f2.jpg",
+            "url": "http://tastytab.com/uploads/restaurant/logo/2/f2.jpg",
             "thumb": {
-                "url": "/uploads/restaurant/logo/2/thumb_f2.jpg"
+                "url": "http://tastytab.com/uploads/restaurant/logo/2/thumb_f2.jpg"
             }
         }
     },
