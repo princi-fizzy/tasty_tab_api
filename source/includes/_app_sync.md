@@ -88,7 +88,7 @@ To optimize things try to set sync interval & sync time in accounts setting, and
 ```ruby
 require 'unirest'
 
-response = Unirest.get "http://tastytab.com/api/v1/restaurants/app_sync_with_android?access_token=8de9358df65b86b643a206cb795355a2"
+response = Unirest.get "http://192.34.57.207/api/v1/restaurants/app_sync_with_android?access_token=sample_api_access_token"
 
 response.raw_body
 ```
@@ -101,9 +101,9 @@ response.raw_body
     "name": "sagar ratna",
     "logo": {
         "logo": {
-            "url": "http://tastytab.com/uploads/restaurant/logo/2/f2.jpg",
+            "url": "http://192.34.57.207/uploads/restaurant/logo/2/f2.jpg",
             "thumb": {
-                "url": "http://tastytab.com/uploads/restaurant/logo/2/thumb_f2.jpg"
+                "url": "http://192.34.57.207/uploads/restaurant/logo/2/thumb_f2.jpg"
             }
         }
     },
@@ -121,9 +121,9 @@ response.raw_body
     "name": "sagar ratna",
     "logo": {
         "logo": {
-            "url": "http://tastytab.com/uploads/restaurant/logo/2/f2.jpg",
+            "url": "http://192.34.57.207/uploads/restaurant/logo/2/f2.jpg",
             "thumb": {
-                "url": "http://tastytab.com/uploads/restaurant/logo/2/thumb_f2.jpg"
+                "url": "http://192.34.57.207/uploads/restaurant/logo/2/thumb_f2.jpg"
             }
         }
     },
