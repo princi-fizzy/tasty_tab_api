@@ -5,12 +5,12 @@ To interact with TastyTab's API you need to authenticate yourself by including p
 Some sensitive requests also require `waiter_token` & `manager_token`.
 
 ### HTTP REQUEST
-`GET http://www.tastytab.com/api/v1/cutomers?access_token=8de9358df65b86b643a206cb795355a2`
+`GET http://www.tastytab.com/api/v1/cutomers?access_token=sample_api_access_token`
 
 
 ```json
 {
-  "access_token": "8de9358df65b86b643a206cb795355a2"
+  "access_token": "sample_api_access_token"
   "customer" {
     "name": "Rahul"
   }
@@ -20,13 +20,13 @@ Some sensitive requests also require `waiter_token` & `manager_token`.
 ```ruby
 require 'httparty'
 
-response = HTTParty.get('http://www.tastytab.com/api/v1/?access_token=8de9358df65b86b643a206cb795355a2')
+response = HTTParty.get('http://www.tastytab.com/api/v1/?access_token=sample_api_access_token')
 
 response.body
 ```
 
 
-> Make sure to replace sample access token `8de9358df65b86b643a206cb795355a2` with your API key.
+> Make sure to replace sample access token `sample_api_access_token` with your API key.
 
 ```json
 {
@@ -45,8 +45,8 @@ TastyTab uses access token to allow access to the API. You can register a new Ta
 
 TastyTab expects for the access_token to be included in all API requests to the server in a header that looks like the following:
 
-`access_token: "8de9358df65b86b643a206cb795355a2"`
+`access_token: "sample_api_access_token"`
 
 <aside class="notice">
-You must replace <code>8de9358df65b86b643a206cb795355a2</code> with your personal access token.
+You must replace <code>sample_api_access_token</code> with your personal access token.
 </aside>

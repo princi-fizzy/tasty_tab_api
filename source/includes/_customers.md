@@ -4,7 +4,7 @@
 
 ```json
 {
-  "access_token": "8de9358df65b86b643a206cb795355a2"
+  "access_token": "sample_api_access_token"
   "customer" {
     "email": "user@example.com",
     "password": "testing",
@@ -83,7 +83,7 @@ Customer has been registered. Yay!
 
 ```json
 {
-  "access_token": "8de9358df65b86b643a206cb795355a2"
+  "access_token": "sample_api_access_token"
   "customer" {
     "email": "user@example.com",
     "password": "testing"
@@ -146,7 +146,7 @@ This endpoint generates an auth_token, which should be used to make all future c
 
 ### HTTP Request
 
-`http://localhost:3000/api/v1/customers/sessions.json?access_token=8de9358df65b86b643a206cb795355a2`
+`http://localhost:3000/api/v1/customers/sessions.json?access_token=sample_api_access_token`
 
 ### URL Parameters
 
