@@ -54,7 +54,7 @@ response.raw_body
 ```
 
 
-The App Sync API will return entire restaurant hash in a nested & easy to parse format. This hash includes restaurant menus, menu categories, food .
+The App Sync API will return entire restaurant hash in a nested & easy to parse format. This hash includes restaurant menus, menu categories, foost
 
 
 These hash may contain duplicate data, so remember to remove any redundant data.
@@ -133,7 +133,7 @@ response.raw_body
 }
 
 ```
-The App Sync API will return entire restaurant hash in a nested & easy to parse format. This hash includes restaurant menus, menu categories, food
+The App Sync API will return entire restaurant hash in a nested & easy to parse format. This hash includes restaurant menus, menu categories, foost
 
 These hash may contain duplicate data, so remember to remove any redundant data.
 
@@ -143,4 +143,4 @@ These hash may contain duplicate data, so remember to remove any redundant data.
 
 Data will only be sent if it has changed since last sync. To check this it has android app sync token in restaurant table which will be updated whenever some changes made to food item table or any other tables such as food image  , menus , categories , review , tables , item modifiers etc .
 
-At the time of syncing the android developer has to enter android app sync token , if token matches with the token present in the database then it does not return any data, but if the token does not match or android developer does not provide any token then it will return entrie restaurant hash ..
+At the time of syncing the android developer has to enter android app sync token , if token matche with the token present in the database then there would no changes made , but if the token does not match or android developer does not provide any token then it will return entrie restaurant hash ..
