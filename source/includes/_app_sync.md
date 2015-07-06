@@ -5,9 +5,11 @@
 
 ```json
 {
-  "access_token": "sample_api_access_token"
+
+  "access_token": "testing"
   "restaurant" {
     "id": 1
+
   }
 }
 ```
@@ -15,7 +17,7 @@
 ```ruby
 require 'unirest'
 
-response = Unirest.get "http://localhost:3000/api/v1/24/app_sync.json?access_token=sample_api_access_token"
+response = Unirest.get "http://localhost:3000/api/v1/24/app_sync.json?access_token=testing"
 
 response.raw_body
 ```
@@ -62,7 +64,7 @@ These hash may contain duplicate data, so remember to remove any redundant data.
 
 ### HTTP Request
 
-`GET http://tastytab.com/api/v1/:id/app_sync?access_token=sample_api_access_token`
+`GET http://tastytab.com/api/v1/:id/app_sync?access_token=testing`
 
 
 Replace `:id` with restaurant id. Also, remember to replace access_token with your own access_token.
@@ -78,7 +80,7 @@ To optimize things try to set sync interval & sync time in accounts setting, and
 
 ```json
 {
-  "access_token": "sample_api_access_token"
+  "access_token": "testing"
   "restaurant" {
     "id": 2
   }
@@ -89,7 +91,7 @@ To optimize things try to set sync interval & sync time in accounts setting, and
 ```ruby
 require 'unirest'
 
-response = Unirest.get "http://192.34.57.207/api/v1/restaurants/app_sync_with_android?access_token=sample_api_access_token"
+response = Unirest.get "http://192.34.57.207/api/v1/restaurants/app_sync_with_android?access_token=testing"
 
 response.raw_body
 ```
@@ -140,7 +142,7 @@ These hash may contain duplicate data, so remember to remove any redundant data.
 
 ### HTTP Request
 
-`GET http://192.34.57.207/api/v1/restaurants/app_sync_with_android?access_token=sample_api_access_token`
+`GET http://192.34.57.207/api/v1/restaurants/app_sync_with_android?access_token=testing`
 
 Data will only be sent if it has changed since last sync. To check this it has android app sync token in restaurant table which will be updated whenever some changes made to food item table or any other tables such as food image  , menus , categories , review , tables , item modifiers etc .
 
