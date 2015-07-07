@@ -15,6 +15,7 @@ includes:
   - customers
   - search
   - app_sync
+  - order
   - errors
 
 search: true
