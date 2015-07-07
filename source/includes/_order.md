@@ -6,8 +6,13 @@ This is order API and it  will help you to create new order on application datab
 
 ```json
 {
-  "access_token":   "sample_api_access_token"
-  "search_value":   "FRIED ZUCCHINI"
+  "access_token":                  "sample_api_access_token"
+  "customer_first_name":           "Sachin"
+  "customer_last_name":            "Mathur"
+  "birth_date":                    "25-08-1989"
+  "email_address":                 "sachin_mathur@tastytab.com"
+  "phone_area_code":               "101"
+  "phone_number":                  "1234512345"
 }
 
 
@@ -23,97 +28,26 @@ response.raw_body
 > The above command returns JSON structured like this:
 
 ```json
-[
-    {
-        "id": 12,
-        "name": "FRIED ZUCCHINI",
-        "pos_name": "Fried Zucchini",
-        "price": 6.95,
-        "description": null,
-        "is_out_of_stock": false,
-        "item_modifiers": [],
-        "food_images": [
-            {
-                "food_image": {
-                    "id": 1,
-                    "image": {
-                        "image": {
-                            "url": "/uploads/food_image/image/1/f1.jpg",
-                            "thumb": {
-                                "url": "/uploads/food_image/image/1/thumb_f1.jpg"
-                            }
-                        }
-                    }
-                }
-            },
-            {
-                "food_image": {
-                    "id": 2,
-                    "image": {
-                        "image": {
-                            "url": "/uploads/food_image/image/2/f2.jpg",
-                            "thumb": {
-                                "url": "/uploads/food_image/image/2/thumb_f2.jpg"
-                            }
-                        }
-                    }
-                }
-            },
-            {
-                "food_image": {
-                    "id": 3,
-                    "image": {
-                        "image": {
-                            "url": "/uploads/food_image/image/3/f3.jpg",
-                            "thumb": {
-                                "url": "/uploads/food_image/image/3/thumb_f3.jpg"
-                            }
-                        }
-                    }
-                }
-            },
-            {
-                "food_image": {
-                    "id": 4,
-                    "image": {
-                        "image": {
-                            "url": "/uploads/food_image/image/4/f4.jpg",
-                            "thumb": {
-                                "url": "/uploads/food_image/image/4/thumb_f4.jpg"
-                            }
-                        }
-                    }
-                }
-            },
-            {
-                "food_image": {
-                    "id": 5,
-                    "image": {
-                        "image": {
-                            "url": "/uploads/food_image/image/5/f5.jpg",
-                            "thumb": {
-                                "url": "/uploads/food_image/image/5/thumb_f5.jpg"
-                            }
-                        }
-                    }
-                }
-            },
-            {
-                "food_image": {
-                    "id": 6,
-                    "image": {
-                        "image": {
-                            "url": "/uploads/food_image/image/6/f6.jpg",
-                            "thumb": {
-                                "url": "/uploads/food_image/image/6/thumb_f6.jpg"
-                            }
-                        }
-                    }
-                }
-            }
-        ]
+{
+    "id": 2,
+    "pos_id": "QSCSI4OR80",
+    "order_type": null,
+    "order_status": "STAGED",
+    "order_date": "2015-07-07T10:07:28.483Z",
+    "restaurant": {
+        "id": 3,
+        "name": "sagar ratna"
+    },
+    "table": null,
+    "customer": {
+        "id": 27,
+        "first_name": "Sachin",
+        "last_name": "Mathur",
+        "email": "sachin_mathur@tastytab.com",
+        "phone_number": "1234512345"
     }
-]
+}
+
 ```
 
 
