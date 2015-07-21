@@ -109,15 +109,17 @@ You must replace <code>sample_api_access_token</code> with your personal access 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_api_access_token"</span><span class="w">
   </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testing"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pos_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinesh_tasty@tastytab.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinesh"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w">  </span><span class="s2">"singh"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birth_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1989-08-26"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"http://localhost:3000/api/v1/customers/registrations"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">customer: </span><span class="p">{</span><span class="ss">email: </span><span class="s2">"user@example.com"</span><span class="p">,</span> <span class="ss">password: </span><span class="s2">"testing"</span><span class="p">,</span> <span class="ss">pos_customer_id: </span><span class="mi">5</span><span class="p">}}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">customer: </span><span class="p">{</span><span class="ss">first_name: </span><span class="s2">"dinesh"</span><span class="p">,</span> <span class="ss">last_name: </span><span class="s2">"singh"</span><span class="p">,</span> <span class="ss">email: </span><span class="s2">"dinesh_tasty@tastytab.com"</span><span class="p">,</span> <span class="ss">password: </span><span class="s2">"password"</span><span class="p">,</span> <span class="ss">birth_date: </span><span class="s2">" 26/08/1989"</span> <span class="p">,</span> <span class="ss">phone_area_code: </span><span class="s2">"101"</span> <span class="p">,</span> <span class="ss">phone_number: </span><span class="s2">"99901990"</span><span class="p">}}</span>
 
 <span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
 </code></pre>
@@ -126,45 +128,67 @@ You must replace <code>sample_api_access_token</code> with your personal access 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pos_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"birth_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"phone_area_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"restaurant_opt_out"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tasty_tab_opt_out"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"restaurant_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-10T11:45:48.813Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-10T11:45:48.813Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"auth_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fUQRZPyxQ2c9oUiUJxn5"</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">232</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinesh"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singh"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinesh_tasty@tastytab.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99901990"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birth_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1989-08-26"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="p">{</span>
-  <span class="s2">"id"</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
-  <span class="s2">"pos_customer_id"</span><span class="p">:</span> <span class="s2">"5"</span><span class="p">,</span>
-  <span class="s2">"first_name"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-  <span class="s2">"last_name"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-  <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"user@example.com"</span><span class="p">,</span>
-  <span class="s2">"birth_date"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-  <span class="s2">"phone_area_code"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-  <span class="s2">"phone_number"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-  <span class="s2">"restaurant_opt_out"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-  <span class="s2">"tasty_tab_opt_out"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-  <span class="s2">"restaurant_id"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-  <span class="s2">"created_at"</span><span class="p">:</span> <span class="s2">"2015-06-10T11:45:48.813Z"</span><span class="p">,</span>
-  <span class="s2">"updated_at"</span><span class="p">:</span> <span class="s2">"2015-06-10T11:45:48.813Z"</span><span class="p">,</span>
-  <span class="s2">"auth_token"</span><span class="p">:</span> <span class="s2">"fUQRZPyxQ2c9oUiUJxn5"</span>
+    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">232</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="p">:</span> <span class="s2">"dinesh"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="p">:</span> <span class="s2">"singh"</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"dinesh_tasty@tastytab.com"</span><span class="p">,</span>
+    <span class="s2">"phone_number"</span><span class="p">:</span> <span class="s2">"99901990"</span><span class="p">,</span>
+    <span class="s2">"birth_date"</span><span class="p">:</span> <span class="s2">"1989-08-26"</span>
 <span class="p">}</span>
 </code></pre>
 
-<p>This endpoint registers a new customer.</p>
+<p>We have an API to  register a customer on the application.</p>
+
+<p>|&mdash;&mdash;&mdash; Important points to create new customers &mdash;&mdash;&mdash;-|</p>
+
+<p>1 . First there are two ways to import customer in the application</p>
+
+<p>i)  Import customer while syncing from eThor .</p>
+
+<p>ii) User has a facility to register themself as a customer .</p>
+
+<p>iii)  When user register on application , they are required to fill the various fields such as : first name , last name , birth date , email address , password ,phone code , phone number .</p>
+
+<p>iv) Email address , password , phone code , phone number are the mandatory fields</p>
+
+<p>v) If customer with particular details are not present on the eThor , then it will also create the customer on eThor also .</p>
+
+<p>vi) Every customer has unique customer id on eThor , whenever a customer registration is done ,customer is also create on the eThor on background and once the customer is created on ethor , it will return the customer ID as (pos_customer_id) and save this ID in customer table .</p>
+
+<p>vi) In case customer register themself on application , and if customer is already present on the eThor , then it will return their unique customer id and save in the application&rsquo;s database .</p>
+
+<p>vii) Every customer can be associated with one or more restaurant at a time ,</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://tastytab.com/api/v1/customers/registrations</code></p>
+<p>POST http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token</p>
+
+<h3 id="postman-request-:">POSTMAN Request :</h3>
+
+<p>http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token</p>
+
+<p>customer[first_name]       :   dinesh</p>
+
+<p>customer[last_name]        :  singh</p>
+
+<p>customer[birth_date]       :  26/08/1989</p>
+
+<p>customer[password]         :  password</p>
+
+<p>customer[email]            :  dinesh_tasty@tastytab.com</p>
+
+<p>customer[phone_area_code]  :  101</p>
+
+<p>customer[phone_number]     :  99901990</p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -175,21 +199,37 @@ You must replace <code>sample_api_access_token</code> with your personal access 
 </tr>
 </thead><tbody>
 <tr>
-<td>email</td>
-<td>Make sure it doesn&rsquo;t already exists.</td>
+<td>customer[email]</td>
+<td>Make sure it doesn’t already exists.</td>
 </tr>
 <tr>
-<td>password</td>
+<td>customer[first_name]</td>
+<td>It should contain the first name of customer , it can be blank.</td>
+</tr>
+<tr>
+<td>customer[last_name]</td>
+<td>It should contain the last name of customer , it can be blank.</td>
+</tr>
+<tr>
+<td>customer[birth_date]</td>
+<td>It should contain the birth date of customer.</td>
+</tr>
+<tr>
+<td>customer[password]</td>
 <td>Password must be atleast 6 characters long.</td>
 </tr>
 <tr>
-<td>pos_customer_id</td>
-<td>It must be unique. Each customer is assigned a unique pos id.</td>
+<td>customer[phone_area_code]</td>
+<td>It cannot be blank.</td>
+</tr>
+<tr>
+<td>customer[phone_number]</td>
+<td>It cannot be blank.</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-Customer has been registered. Yay!
+Customer has been registered for a particular restaurant (restaurant is based on access token ).
 </aside>
 
 <h2 id="create-a-new-session">Create a new session</h2>
