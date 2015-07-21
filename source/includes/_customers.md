@@ -61,22 +61,50 @@ response.raw_body
 }
 ```
 
-This endpoint registers a new customer.
+We have an API to  register a customer on the application.
+
+|--------- Important points to create new customers ----------|
+
+1 . First there are two ways to import customer in the application
+
+
+      i)  Import customer while syncing from eThor .
+
+      ii) User has a facility to register themself as a customer .
+
+      iii)  When user register on application , they are required to fill the various fields such as : first name , last name , birth date , email address , password ,phone code , phone number .
+
+      iv) Email address , password , phone code , phone number are the mandatory fields
+
+      v) If customer with particular details are not present on the eThor , then it will also create the customer on eThor also .
+
+      vi) Every customer has unique customer id on eThor , whenever a customer registration is done ,customer is also create on the eThor on background and once the customer is created on ethor , it will return the customer ID as (pos_customer_id) and save this ID in customer table .
+
+      vi) In case customer register themself on application , and if customer is already present on the eThor , then it will return their unique customer id and save in the application's database .
+
+      vii) Customer is associated with restaurant , Every customer can be associated with one or more restaurant at a time .
+
+
 
 ### HTTP Request
 
-`GET http://tastytab.com/api/v1/customers/registrations`
+POST http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-email | Make sure it doesn't already exists.
-password | Password must be atleast 6 characters long.
-pos_customer_id | It must be unique. Each customer is assigned a unique pos id.
+customer[email] | Make sure it doesn’t already exists.
+customer[first_name] | It should contain the first name of customer , it can be blank.
+customer[last_name] | It should contain the last name of customer , it can be blank.
+customer[birth_date] | It should contain the birth date of customer.
+customer[password] | Password must be atleast 6 characters long.
+customer[phone_area_code] | It cannot be blank.
+customer[phone_number] | It cannot be blank.
+
 
 <aside class="success">
-Customer has been registered. Yay!
+Customer has been registered for a particular restaurant (restaurant is based on access token ).
 </aside>
 
 ## Create a new session
