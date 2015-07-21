@@ -82,7 +82,7 @@ We have an API to  register a customer on the application.
 
       vi) In case customer register themself on application , and if customer is already present on the eThor , then it will return their unique customer id and save in the application's database .
 
-      vii) Customer is associated with restaurant , Every customer can be associated with one or more restaurant at a time .
+      vii) Every customer can be associated with one or more restaurant at a time ,
 
 
 
