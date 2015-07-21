@@ -6,9 +6,11 @@
 {
   "access_token": "sample_api_access_token"
   "customer" {
-    "email": "user@example.com",
-    "password": "testing",
-    "pos_customer_id": 5
+    "email": "dinesh_tasty@tastytab.com",
+    "password": "password",
+    "first_name": "dinesh",
+    "last_name":  "singh",
+    "birth_date": "1989-08-26"
   }
 }
 ```
@@ -16,7 +18,7 @@
 ```ruby
 require 'unirest'
 
-response = Unirest.post "http://localhost:3000/api/v1/customers/registrations", headers:{ "Accept" => "application/json" }, parameters: {customer: {email: "user@example.com", password: "testing", pos_customer_id: 5}}
+response = Unirest.post "http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token", headers:{ "Accept" => "application/json" }, parameters: {customer: {first_name: "dinesh", last_name: "singh", email: "dinesh_tasty@tastytab.com", password: "password", birth_date: " 26/08/1989" , phone_area_code: "101" , phone_number: "99901990"}}
 
 response.raw_body
 ```
@@ -25,39 +27,23 @@ response.raw_body
 
 ```json
 {
-  "id": 9,
-  "pos_customer_id": "5",
-  "first_name": null,
-  "last_name": null,
-  "email": "user@example.com",
-  "birth_date": null,
-  "phone_area_code": null,
-  "phone_number": null,
-  "restaurant_opt_out": null,
-  "tasty_tab_opt_out": null,
-  "restaurant_id": null,
-  "created_at": "2015-06-10T11:45:48.813Z",
-  "updated_at": "2015-06-10T11:45:48.813Z",
-  "auth_token": "fUQRZPyxQ2c9oUiUJxn5"
+    "id": 232,
+    "first_name": "dinesh",
+    "last_name": "singh",
+    "email": "dinesh_tasty@tastytab.com",
+    "phone_number": "99901990",
+    "birth_date": "1989-08-26"
 }
 ```
 
 ```ruby
 {
-  "id": 9,
-  "pos_customer_id": "5",
-  "first_name": null,
-  "last_name": null,
-  "email": "user@example.com",
-  "birth_date": null,
-  "phone_area_code": null,
-  "phone_number": null,
-  "restaurant_opt_out": null,
-  "tasty_tab_opt_out": null,
-  "restaurant_id": null,
-  "created_at": "2015-06-10T11:45:48.813Z",
-  "updated_at": "2015-06-10T11:45:48.813Z",
-  "auth_token": "fUQRZPyxQ2c9oUiUJxn5"
+    "id": 232,
+    "first_name": "dinesh",
+    "last_name": "singh",
+    "email": "dinesh_tasty@tastytab.com",
+    "phone_number": "99901990",
+    "birth_date": "1989-08-26"
 }
 ```
 
@@ -89,6 +75,25 @@ We have an API to  register a customer on the application.
 ### HTTP Request
 
 POST http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token
+
+### POSTMAN Request :
+
+http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token
+
+customer[first_name]       :   dinesh
+
+customer[last_name]        :  singh
+
+customer[birth_date]       :  26/08/1989
+
+customer[password]         :  password
+
+customer[email]            :  dinesh_tasty@tastytab.com
+
+customer[phone_area_code]  :  101
+
+customer[phone_number]     :  99901990
+
 
 ### Query Parameters
 
