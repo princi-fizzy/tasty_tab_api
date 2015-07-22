@@ -8,8 +8,11 @@
   "customer" {
     "email": "dinesh_tasty@tastytab.com",
     "password": "password",
-    "first_name": "dinesh",
-    "last_name":  "singh",
+    "first_name": "princi",
+    "last_name":  "narula",
+    "password_confirmation": "password",
+    "phone_Area_code": "101",
+    "phone_number": "99901990",
     "birth_date": "1989-08-26"
   }
 }
@@ -18,7 +21,7 @@
 ```ruby
 require 'unirest'
 
-response = Unirest.post "http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token", headers:{ "Accept" => "application/json" }, parameters: {customer: {first_name: "dinesh", last_name: "singh", email: "dinesh_tasty@tastytab.com", password: "password", birth_date: " 26/08/1989" , phone_area_code: "101" , phone_number: "99901990"}}
+response = Unirest.post "http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token", headers:{ "Accept" => "application/json" }, parameters: {customer: {first_name: "princi", last_name: "narula", email: "android_tastytab@tester.com", password: "password", birth_date: " 26/08/1989" , phone_area_code: "101" , phone_number: "99901990" , password_confirmation: "password"}}
 
 response.raw_body
 ```
@@ -27,23 +30,15 @@ response.raw_body
 
 ```json
 {
-    "id": 232,
-    "first_name": "dinesh",
-    "last_name": "singh",
-    "email": "dinesh_tasty@tastytab.com",
-    "phone_number": "99901990",
-    "birth_date": "1989-08-26"
+    "status": "Welcome! You have signed up successfully.",
+    "auth_token": "qC7USZPSz2MyxNs3RFKv"
 }
 ```
 
 ```ruby
 {
-    "id": 232,
-    "first_name": "dinesh",
-    "last_name": "singh",
-    "email": "dinesh_tasty@tastytab.com",
-    "phone_number": "99901990",
-    "birth_date": "1989-08-26"
+    "status": "Welcome! You have signed up successfully.",
+    "auth_token": "qC7USZPSz2MyxNs3RFKv"
 }
 ```
 
