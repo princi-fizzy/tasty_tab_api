@@ -156,7 +156,7 @@ You must replace <code>sample_api_access_token</code> with your personal access 
 
 <p>ii) User has a facility to register themself as a customer .</p>
 
-<p>iii)  When user register on application , they are required to fill the various fields such as : first name , last name , birth date , email address , password ,phone code , phone number .</p>
+<p>iii)  When user register on application , they are required to fill the various fields such as : first name , last name , birth date , email address , password ,phone code , phone number ,password_confirmation .</p>
 
 <p>iv) Email address , password , phone code , phone number are the mandatory fields</p>
 
@@ -176,19 +176,21 @@ You must replace <code>sample_api_access_token</code> with your personal access 
 
 <p>http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token</p>
 
-<p>customer[first_name]       :   dinesh</p>
+<p>customer[first_name]              :   dinesh</p>
 
-<p>customer[last_name]        :  singh</p>
+<p>customer[last_name]               :  singh</p>
 
-<p>customer[birth_date]       :  26/08/1989</p>
+<p>customer[birth_date]              :  26/08/1989</p>
 
-<p>customer[password]         :  password</p>
+<p>customer[password]                :  password</p>
 
-<p>customer[email]            :  dinesh_tasty@tastytab.com</p>
+<p>customer[email]                   :  dinesh_tasty@tastytab.com</p>
 
-<p>customer[phone_area_code]  :  101</p>
+<p>customer[phone_area_code]         :  101</p>
 
-<p>customer[phone_number]     :  99901990</p>
+<p>customer[phone_number]            :  99901990</p>
+
+<p>customer[password_confirmation]   : password</p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -225,6 +227,10 @@ You must replace <code>sample_api_access_token</code> with your personal access 
 <tr>
 <td>customer[phone_number]</td>
 <td>It cannot be blank.</td>
+</tr>
+<tr>
+<td>customer[password_confirmation]</td>
+<td>it should be same as password .</td>
 </tr>
 </tbody></table>
 
