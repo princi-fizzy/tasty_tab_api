@@ -111,15 +111,18 @@ You must replace <code>sample_api_access_token</code> with your personal access 
   </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinesh_tasty@tastytab.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinesh"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w">  </span><span class="s2">"singh"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"princi"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w">  </span><span class="s2">"narula"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password_confirmation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone_Area_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99901990"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"birth_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1989-08-26"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">customer: </span><span class="p">{</span><span class="ss">first_name: </span><span class="s2">"dinesh"</span><span class="p">,</span> <span class="ss">last_name: </span><span class="s2">"singh"</span><span class="p">,</span> <span class="ss">email: </span><span class="s2">"dinesh_tasty@tastytab.com"</span><span class="p">,</span> <span class="ss">password: </span><span class="s2">"password"</span><span class="p">,</span> <span class="ss">birth_date: </span><span class="s2">" 26/08/1989"</span> <span class="p">,</span> <span class="ss">phone_area_code: </span><span class="s2">"101"</span> <span class="p">,</span> <span class="ss">phone_number: </span><span class="s2">"99901990"</span><span class="p">}}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">customer: </span><span class="p">{</span><span class="ss">first_name: </span><span class="s2">"princi"</span><span class="p">,</span> <span class="ss">last_name: </span><span class="s2">"narula"</span><span class="p">,</span> <span class="ss">email: </span><span class="s2">"android_tastytab@tester.com"</span><span class="p">,</span> <span class="ss">password: </span><span class="s2">"password"</span><span class="p">,</span> <span class="ss">birth_date: </span><span class="s2">" 26/08/1989"</span> <span class="p">,</span> <span class="ss">phone_area_code: </span><span class="s2">"101"</span> <span class="p">,</span> <span class="ss">phone_number: </span><span class="s2">"99901990"</span> <span class="p">,</span> <span class="ss">password_confirmation: </span><span class="s2">"password"</span><span class="p">}}</span>
 
 <span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
 </code></pre>
@@ -128,21 +131,13 @@ You must replace <code>sample_api_access_token</code> with your personal access 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">232</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinesh"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singh"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinesh_tasty@tastytab.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99901990"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"birth_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1989-08-26"</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome! You have signed up successfully."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auth_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qC7USZPSz2MyxNs3RFKv"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="p">{</span>
-    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">232</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="p">:</span> <span class="s2">"dinesh"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="p">:</span> <span class="s2">"singh"</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"dinesh_tasty@tastytab.com"</span><span class="p">,</span>
-    <span class="s2">"phone_number"</span><span class="p">:</span> <span class="s2">"99901990"</span><span class="p">,</span>
-    <span class="s2">"birth_date"</span><span class="p">:</span> <span class="s2">"1989-08-26"</span>
+    <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"Welcome! You have signed up successfully."</span><span class="p">,</span>
+    <span class="s2">"auth_token"</span><span class="p">:</span> <span class="s2">"qC7USZPSz2MyxNs3RFKv"</span>
 <span class="p">}</span>
 </code></pre>
 
