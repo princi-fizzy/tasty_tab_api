@@ -58,7 +58,7 @@ We have an API to  register a customer on the application.
 
       ii) User has a facility to register themself as a customer .
 
-      iii)  When user register on application , they are required to fill the various fields such as : first name , last name , birth date , email address , password ,phone code , phone number .
+      iii)  When user register on application , they are required to fill the various fields such as : first name , last name , birth date , email address , password ,phone code , phone number ,password_confirmation .
 
       iv) Email address , password , phone code , phone number are the mandatory fields
 
@@ -80,20 +80,21 @@ POST http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api
 
 http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token
 
-customer[first_name]       :   dinesh
+customer[first_name]              :   dinesh
 
-customer[last_name]        :  singh
+customer[last_name]               :  singh
 
-customer[birth_date]       :  26/08/1989
+customer[birth_date]              :  26/08/1989
 
-customer[password]         :  password
+customer[password]                :  password
 
-customer[email]            :  dinesh_tasty@tastytab.com
+customer[email]                   :  dinesh_tasty@tastytab.com
 
-customer[phone_area_code]  :  101
+customer[phone_area_code]         :  101
 
-customer[phone_number]     :  99901990
+customer[phone_number]            :  99901990
 
+customer[password_confirmation]   : password
 
 ### Query Parameters
 
@@ -106,7 +107,7 @@ customer[birth_date] | It should contain the birth date of customer.
 customer[password] | Password must be atleast 6 characters long.
 customer[phone_area_code] | It cannot be blank.
 customer[phone_number] | It cannot be blank.
-
+customer[password_confirmation]  | it should be same as password .
 
 <aside class="success">
 Customer has been registered for a particular restaurant (restaurant is based on access token ).
