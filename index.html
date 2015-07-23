@@ -312,6 +312,53 @@ Customer has been registered for a particular restaurant (restaurant is based on
 </tr>
 </tbody></table>
 
+<h2 id="change-password">Change Password</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"http://192.34.57.207/api/v1/customers/customers/password"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">customer: </span><span class="p">{</span><span class="ss">email: </span><span class="s2">"ssuser@example.com"</span><span class="p">}}</span>
+
+<span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
+
+</code></pre>
+
+<blockquote>
+<p>NO JSON IS RETURNED:</p>
+</blockquote>
+<pre class="highlight ruby"><code><span class="n">this</span> <span class="n">endpoint</span> <span class="n">will</span> <span class="n">not</span> <span class="k">return</span> <span class="n">any</span> <span class="n">json</span> <span class="p">,</span> <span class="no">It</span> <span class="n">will</span> <span class="n">only</span> <span class="nb">send</span> <span class="n">mail</span> <span class="n">from</span> <span class="n">where</span> <span class="n">customer</span> <span class="n">can</span> <span class="n">change</span> <span class="n">their</span> <span class="n">password</span>
+</code></pre>
+
+<p>This endpoint is use to reset the password of the customer , Customer has a facility to reset his password if he forgots the password .</p>
+
+<p>To change the password , customer has to click on the forgort password link and then he has to enter his email address and submit</p>
+
+<p>Email is sent to the customer with a link , customer can change his password by clicking on that link .</p>
+
+<aside class="warning">only registered customer can change their password</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">http://192.34.57.207/api/v1/customers/customers/password</code></p>
+
+<h3 id="postman-request-:">POSTMAN Request :</h3>
+
+<p>http://192.34.57.207/api/v1/customers/customers/password</p>
+
+<p>customer[email]              :   android_tastytab@tester.com</p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer[email]</td>
+<td>Registered email id of the customer</td>
+</tr>
+</tbody></table>
+
           <h1 id="full-text-search">Full Text Search</h1>
 
 <p>This if full text search API and it  will help you to search food items available in database .</p>
