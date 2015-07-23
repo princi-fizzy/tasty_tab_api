@@ -184,3 +184,49 @@ Parameter | Description
 email | Registered email id of the customer
 password | Associated password
 
+## Change Password
+
+
+
+```ruby
+require 'unirest'
+
+response = Unirest.post "http://192.34.57.207/api/v1/customers/customers/password", headers:{ "Accept" => "application/json" }, parameters: {customer: {email: "ssuser@example.com"}}
+
+response.raw_body
+
+```
+
+> NO JSON IS RETURNED:
+
+
+
+```ruby
+this endpoint will not return any json , It will only send mail from where customer can change their password
+```
+
+
+This endpoint is use to reset the password of the customer , Customer has a facility to reset his password if he forgots the password .
+
+To change the password , customer has to click on the forgort password link and then he has to enter his email address and submit
+
+Email is sent to the customer with a link , customer can change his password by clicking on that link .
+
+<aside class="warning">only registered customer can change their password</aside>
+
+### HTTP Request
+
+`http://192.34.57.207/api/v1/customers/customers/password`
+
+### POSTMAN Request :
+
+http://192.34.57.207/api/v1/customers/customers/password
+
+customer[email]              :   android_tastytab@tester.com
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+customer[email] | Registered email id of the customer
