@@ -112,10 +112,10 @@ Customer has been registered for a particular restaurant (restaurant is based on
 
 ```json
 {
-  "access_token": "sample_api_access_token"
-  "customer" {
-    "email": "user@example.com",
-    "password": "testing"
+  "access_token": "sample_api_access_token",
+  "customer":{
+    "email": "ghanshyamanand1989@gmail.com",
+    "password": "password"
   }
 }
 ```
@@ -123,7 +123,7 @@ Customer has been registered for a particular restaurant (restaurant is based on
 ```ruby
 require 'unirest'
 
-response = Unirest.post "http://tastytab.com/api/v1/customers/sessions", headers:{ "Accept" => "application/json" }, parameters: {customer: {email: "user@example.com", password: "testing"}}
+response = Unirest.post "http://192.34.57.207/api/v1/customers/sessions?access_token=sample_api_access_token", headers:{ "Accept" => "application/json" }, parameters: {customer: {email: "ghanshyamanand1989@gmail.com", password: "password"}}
 response.raw_body
 ```
 
@@ -131,58 +131,33 @@ response.raw_body
 
 ```json
 {
-  "id": 2,
-  "pos_customer_id": "2",
-  "first_name": "Rahul1",
-  "last_name": null,
-  "email": "rahul1@fizzysoftware.com",
-  "birth_date": null,
-  "phone_area_code": null,
-  "phone_number": null,
-  "restaurant_opt_out": null,
-  "tasty_tab_opt_out": null,
-  "restaurant_id": null,
-  "created_at": "2015-05-11T10:00:58.000Z",
-  "updated_at": "2015-06-10T12:54:50.224Z",
-  "auth_token": "92LSsBmtWdzMwuzSWc6y"
+    "status": "success",
+    "auth_token": "G9wSKUF87nafWigpfKSY"
 }
 ```
 
 ```ruby
 {
-  "id": 2,
-  "pos_customer_id": "2",
-  "first_name": "Rahul1",
-  "last_name": null,
-  "email": "rahul1@fizzysoftware.com",
-  "birth_date": null,
-  "phone_area_code": null,
-  "phone_number": null,
-  "restaurant_opt_out": null,
-  "tasty_tab_opt_out": null,
-  "restaurant_id": null,
-  "created_at": "2015-05-11T10:00:58.000Z",
-  "updated_at": "2015-06-10T12:54:50.224Z",
-  "auth_token": "92LSsBmtWdzMwuzSWc6y"
+    "status": "success",
+    "auth_token": "G9wSKUF87nafWigpfKSY"
 }
 ```
 
 
+This is login api , this endpoint return the unique auth_token of customer , which should be used to make all future customer related requests and apart from access_token it also return the status that can be success or failure .
 
-This endpoint generates an auth_token, which should be used to make all future customer related requests.
 
-<aside class="warning">You should keep this access_token secret.</aside>
 
 ### HTTP Request
 
-`http://localhost:3000/api/v1/customers/sessions.json?access_token=sample_api_access_token`
+`http://192.34.57.207/api/v1/customers/sessions?access_token=sample_api_access_token`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-email | Registered email id of the customer
-password | Associated password
+customer[email] | Registered email id of the customer
+customer[password] | Associated password
 
 ## Change Password
 
