@@ -78,11 +78,8 @@ To optimize things try to set sync interval & sync time in accounts setting, and
 
 ```json
 {
-  "access_token": "sample_api_access_token"
-  "restaurant" {
-    "id": 2
-  }
-  "app_sync_token" : "testing"
+{
+ "access_token": "sample_api_access_token"
 }
 ```
 
