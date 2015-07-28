@@ -134,7 +134,7 @@ response.raw_body
 }
 
 ```
-The App Sync API will return entire restaurant hash in a nested & easy to parse format. This hash includes restaurant menus, menu categories, foost
+The App Sync API will return entire restaurant hash in a nested & easy to parse format. This hash includes restaurant menus, menu categories, food, item modifier groups with item modifiers
 
 These hash may contain duplicate data, so remember to remove any redundant data.
 
