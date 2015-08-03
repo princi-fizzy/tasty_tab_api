@@ -112,7 +112,7 @@ This endpoint create a fresh order on application database and ethor as well . I
 
 ### HTTP Request
 
-`POST  http://192.34.57.207/api/v1/orders?access_token=sample_api_access_token`
+`POST  http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token`
 
 ### Query Parameters
 
