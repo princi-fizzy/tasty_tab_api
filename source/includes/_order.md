@@ -7,6 +7,7 @@ This is order API and it  will help you to create new order on application datab
 ```json
 {
   "access_token":                       "sample_api_access_token"
+  "restaurant_token"                    "............"
   "food_items[16][quantity]"            "8"
   "food_items[16][item_modifiers][]"    "380"
   "food_items[16][item_modifiers][]"    "381"
@@ -112,7 +113,7 @@ This endpoint create a fresh order on application database and ethor as well . I
 
 ### HTTP Request
 
-`POST  http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token`
+`POST  http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token&restaurant_token=..........`
 
 ### Query Parameters
 
