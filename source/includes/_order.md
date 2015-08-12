@@ -18,7 +18,7 @@ This is order API and it  will help you to create new order on application datab
 ```ruby
 require 'unirest'
 
-response = Unirest.post "http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token", headers:{ "Accept" => "application/json" }, parameters: {"food_items"=>{"16"=>{"quantity"=>"5", "item_modifiers"=>["380", "381"]} } }
+response = Unirest.post "http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token&restaurant_token=......", headers:{ "Accept" => "application/json" }, parameters: {"food_items"=>{"16"=>{"quantity"=>"5", "item_modifiers"=>["380", "381"]} } }
 
 
 
