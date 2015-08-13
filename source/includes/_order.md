@@ -99,6 +99,8 @@ response.raw_body
 }
 ```
 
+
+
 This endpoint create a fresh order on application database and ethor as well . It will create a new order with food items and book a table for that customer .
 
 |---- Steps ----|
